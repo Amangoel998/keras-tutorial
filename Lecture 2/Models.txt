@@ -1,0 +1,38 @@
+There 2 types of models in keras library
+- Sequential
+    - Easy to understand and quick to create
+    - Define model and add layers to that model
+    - Connection automatically made & managed 
+- Model class with Functional API
+    - Helps create complex neural network in which we can arrange layers into functional units.
+    - Each perform part of a solution and define interconnection of layers for best solution.
+    - Detailed and powerful NN to solve complex problems
+
+Functional API
+    - Create layers separate from models and connect them in needed arrangements.
+    - User defined layer connections
+    - Function units of layers, which can be re-used my other models as well
+    - Reference layers from within other models
+
+We can Visualize model structure and see how data moves through it
+    1. summary(), function provided summary of the model showing all layers, shapes, trainable parameters.
+    2. plot_model(), graphical depiction of model heirarchy, showing each layers and connection bw layers
+
+Callbacks:
+    - Keras calls these functions that have access to inner state & stats of model
+        1. Collect additional info about training
+        2. Remotely monitor
+        3. Tune training
+        4. Create checkpoints to resume training.
+        5. Terminate training early if conditions are met (like improving has stopped)
+    - Keras has API to allow dev, create their own callbacks
+
+Saving & Restoring
+    - save(path), saves model to HDF5 file
+    - load_file(path), restore saved model
+    - model_to_json(), model_to_yaml(), saves only model layer structural arch
+        w/out weight/compile settings from json/yaml string
+    - model_from_json(), mmodel_from_yaml(), restores structure of model
+    - save_weight(filepath) - saves only model wrights to HDF5
+    - load_weights(path) - load only model wrights from HDF5
+        ^- param "byname=True". load wights into layers with matching name, regardless of architecture
