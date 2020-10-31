@@ -1,0 +1,90 @@
+
+In Keras there are over 70 layers and facility to create custom layer
+This can help to create almost any NN using Keras
+
+Layer Groups
+
+1.Common Methods for Layers - Basic to most Layers
+
+2. Shaping Group - Shape Data pass through Neural Network
+
+3. Merging Group - Merge and combine outputs of Layers
+
+4. Extension Layers - Allow to add our own Layers
+
+Below only support specific types of Network
+5. Convolutional NN - Class of Deep NN, often used to work on Image Data
+
+6. Recurrent NN - Handle Data with sequential dependencies
+    - Ex: Predict Meaning of sentence 
+
+1.Common Methods for Layers
+    1. Dense Layer
+        - They train and sets weights for each Neuron in the layer
+        - But if model is overtrained, we get bad prediction as model is inclined for only training data
+    2. Dropout Layer
+        - These are added as impurities to overcome issue of overfitting data
+        - Sets randomly input recieved from previous layer to 0
+        - We can set percentage of inputs that are then setted 0, eg. 0.5(50%), 0.25(25%)
+        - Hence forcing model to learn relationship bw all possible paths of data through NN.
+    - get_weights(), return weight of a layer
+    - set_weights(weights), weights is a list of numpy arrays
+    - get_config(), return dictionary with config for layer
+    - from_config(config), reinstantiate layer from config
+
+    - input(), output(), get input & output tensor respectively
+    - input_shape(), output_shape(), get input & output shape of tensor
+
+    - get_input_at(index), get_output_at(index)
+    - get_input_shape_at(index), get_output_shape_at(index)
+        node index to identify specific layer
+
+2. Shaping Group - Shape Data pass through Neural Network
+    - Sometimes we need to change shape of data to work properly with a layer
+    - These methods reshape specific batch of data
+    - First dimension of tensor, ie. no of batches is not altered
+    
+    - Reshape((2,3), inputs_shape=(6,)), (None, 6) -> (None, 2, 3)
+    - Flatten(), (None, 64, 32, 32) -> (None, 65536)
+        To get one long vector of values
+    - Permute((2,1), input_shape=(20, 40)), (None, 20, 40) -> (None, 40, 20)
+        Switch order of dimensions in tensor
+        specify order for which input dimension to appear in output
+    - RepeatVector(3), (None, 32) -> (None, 3, 32)
+        Creates n copies of vectors, Sometimes done in implementation of recurrent NN
+        
+
+3. Merging Group - Merge and combine outputs of Layers
+    - Takes List of tensors or fixed size and return merge output.
+    - 7 different merging layers
+    1. Add, add list of same shape tensors and return single tensor of same shape
+    2. Subtract, subtracts 2 same shape tensors and return single tensor a output
+    3. Multiply, elemnt-wise multiplicationof list of inputs of same shape, return 1 tensor
+
+    4. Average, takes list of same shape tensors, ouputs Average single tensor of same shape
+    5. Maximum, takes list of same shape tensors, ouputs Maximum single tensor of same shape
+    6. Concatenate, takes list of same size tensors in concatenation axis (except in concatenation axis)
+        ouputs combined concatenation as single tensor of same shape
+    7. Dot, computes dot product,
+        input: 2 tensors and compute dot product for tensors along specified axis
+
+    Uppercase methods are used a functional API method eg. Subtract()[x1,x2]
+    Lowercase methods are used as pythonic function eg. subtract(x1,x2)
+
+4. Extension Layers - Allow to add our own Layers
+    - These layers have custom functionality instead of predefined functionality
+    - Extend functionality
+    - Perform custom tasks
+    - Encapsulte custom logic
+    - 2 ways
+        - Lambda Layer - Quickand easy to define
+            - Simple tasks, like perform math operation or call a function
+            - Implemented inline or calling a function
+                - Inline, model.add(Lambda(lambda x: x ** 2))
+                - Calling fn, model.add(Lambda(sqr, output_shape=sqr_shape))
+            - But CANNOT have trainable weights which are updated using backpropagation
+
+        - Custom Layer - All features of any other layer in keras
+            - Can Handle any data that predefined layers can Handle
+            - Can use weight which were trained by back propagation
+            - Reusable
