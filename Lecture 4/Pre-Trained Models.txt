@@ -1,0 +1,7 @@
+- Image Classification Models
+- Use Directly for trained classes
+    - Use these models in several ways such as to identify objects in our images that match model's trained classes
+- Retrained through Transfer Learning
+    - Retrain classifier in image classes
+- Fine-tuning for Optimizing
+    - Retrain parts of models to increase performance on image classes

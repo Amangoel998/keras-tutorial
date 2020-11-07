@@ -1,0 +1,37 @@
+Pre-Processing data is most vital and time consuming part of process
+
+- pad_sequece() in Recurrent NN, ensures all word sequences are same size by truncating or padding
+- make_sample_table(), creates table used in skipgrams fn
+    - The table contains probability of sample words
+- skipgrams() and make sample table, is used in word prediction
+    - Processes word sequences and generate word couples
+    - Determine if word couples appear in training text
+    - Uses probability in sample table to ensure equally sample words and does not mostly sample highest occuring words
+
+Some issues can occur if activation value starts growing out of control
+For this keras provided Normalization Layer
+
+        Input
+          |
+  Batch Normalization
+          |
+        Dense
+          |
+    Gaussian Noise
+          |
+        Dense
+
+1. Batch Normalization
+    - Normalizes the activation value of previous layer, so that
+        - Values have mean near value zero 
+        - Values have standard deviation close to one.
+    
+2. Noise Layers
+    - Helps tackle over-fitting problem
+    - Gaussian Noise Layer
+        - Adds gaussian distributed noise values centered on zero to shift values from previous layer a little.
+        - This forces training process to learn new ways of reducing loss
+    - Gaussian Dropout Layer
+        - Multiply output of previous layer by Gaussian noise centered at 1
+    - Alpha Dropout Layer
+        - Retain mean variants of previous layer and reduce output from some units

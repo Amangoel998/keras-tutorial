@@ -1,0 +1,13 @@
+Keras datasets 
+
+
+Objectives
+- Save Time
+    - Like to prepare dataset of images for training recognition algorithm , we need to go through them and determine what objects are in them and associate entries and a truth table for the image.
+- Standard
+    - Used by other models and are standard in their areas
+    - Allows to compare performance of our models against models of others
+- Reduces Workload
+    - Availablity of datasets reduces Workload
+
+Following datasets are available

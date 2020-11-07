@@ -1,0 +1,16 @@
+Installing Keras
+Standalone keras Installation
+
+pip install --upgrade tensorflow-gpu
+
+import tensorflow as tf
+hello = tf.constant('Hello, Tensorflow'+str(tf.__version__))
+sess = tf.Session()
+print(sess.run(hello))
+
+Changing backend of keras:
+    1. Update keras config file, 
+        c:/Users/<username>/.keras/
+        keras.json file will have backend parameter bound to tensorflow and can be changed
+    2. Set env variable, "KERAS_BACKEND" = "tensorflow", "theano", "cntk"
+        Useful for testing as it temporarily overrides the setting
